@@ -1,4 +1,4 @@
-= big.restish =
+= raisin.restish =
 
 This is the restish server used by the rnaseq.pyramid server to fetch resources to render the
 boxes of its pages.
@@ -12,7 +12,7 @@ For more information about restish, check out the official website:
 For information on starting and stopping the server, have a look at the README.txt
 in rnaseq.buildout:
 
-svn cat svn://yourusername@svn.crg.es/big/rnaseq/rnaseq.buildout/trunk/README.txt
+svn cat svn://yourusername@svn.crg.es/big/raisin/raisin.buildout/trunk/README.txt
 
 = About the server =
 

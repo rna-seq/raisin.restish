@@ -3,7 +3,7 @@ import sys, os
 
 version = '1.0.1'
 
-setup(name='big.restish',
+setup(name='raisin.restish',
       version=version,
       description="",
       long_description="""\
@@ -15,7 +15,7 @@ setup(name='big.restish',
       url='',
       license='',
       packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
-      namespace_packages = ['big'],
+      namespace_packages = ['raisin'],
       include_package_data=True,
       zip_safe=False,
       install_requires=[
@@ -26,11 +26,11 @@ setup(name='big.restish',
       entry_points="""
       # -*- Entry points: -*-
 [paste.app_factory]
-main = big.restish.wsgiapp:make_app
+main = raisin.restish.wsgiapp:make_app
 
 [paste.app_install]
 main = paste.script.appinstall:Installer
       """,
-      test_suite="big.restish.tests",
+      test_suite="raisin.restish.tests",
       tests_require=['WebTest'],
       )

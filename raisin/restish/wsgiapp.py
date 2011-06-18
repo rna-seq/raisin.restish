@@ -9,7 +9,7 @@ from raisin.mysqldb import DB
 def make_app(global_conf, **app_conf):
     """
     PasteDeploy WSGI application factory. Called by PasteDeploy (or a compatable WSGI application
-    host) to create the big.restish WSGI application.
+    host) to create the raisin.restish WSGI application.
     """
     app = RestishApp(root.Root())
     app = setup_environ(app, global_conf, app_conf)
