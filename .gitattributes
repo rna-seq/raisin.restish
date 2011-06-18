@@ -1,0 +1,7 @@
+* text=auto !eol
+/README.txt -text
+big/__init__.py -text
+big/restish/__init__.py -text
+big/restish/wsgiapp.py -text
+/setup.py -text
+/version.txt -text
