@@ -1,6 +1,6 @@
 = raisin.restish =
 
-This is the restish server used by the rnaseq.pyramid server to fetch resources to render the
+This is the restish server used by the raisin.pyramid server to fetch resources to render the
 boxes of its pages.
 
 For more information about restish, check out the official website:
