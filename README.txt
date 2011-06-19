@@ -10,7 +10,7 @@ For more information about restish, check out the official website:
 = Starting the server =
 
 For information on starting and stopping the server, have a look at the README.txt
-in rnaseq.buildout:
+in raisin.buildout:
 
 svn cat svn://yourusername@svn.crg.es/big/raisin/raisin.buildout/trunk/README.txt
 
