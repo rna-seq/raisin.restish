@@ -34,7 +34,7 @@ def setup_environ(app, global_conf, app_conf):
                 dbs[project] = {}
                 for db_id, db_name in projects[id]['dbs'].items():
                     connection = connections[databases[db_name]['connection']]
-                    db = DB(db=db_id,
+                    db = DB(db=databases[db_name]['db'],
                             host=connection['server'],
                             port=int(connection['port']),
                             user=connection['user'],
