@@ -22,6 +22,10 @@ def setup_environ(app, global_conf, app_conf):
     """
     # Create any objects that should exist for the lifetime of the application
     # here. Don't forget to actually include them in the environ below!
+    print "Settings:"
+    for key, value in global_conf.items():
+        print " " * 4, key, value
+
     pickles_cache_path = None
     if global_conf['use_pickles_cache'] == 'True':
         pickles_cache_path = os.path.abspath(global_conf['pickles_cache_path'])
