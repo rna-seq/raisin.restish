@@ -1,6 +1,7 @@
 """
 WSGI/PasteDeploy application bootstrap module.
 """
+import os
 from configobj import ConfigObj
 from restish.app import RestishApp
 from raisin.resource import root
@@ -23,12 +24,12 @@ def setup_environ(app, global_conf, app_conf):
     # here. Don't forget to actually include them in the environ below!
     pickles_cache_path = None
     if global_conf['use_pickles_cache'] == 'True':
-        pickles_cache_path = global_conf['pickles_cache_path']
+        pickles_cache_path = os.path.abspath(global_conf['pickles_cache_path'])
     dbs = {}
     if global_conf['use_sql_database']:
-        connections = ConfigObj(global_conf['mysql_connections'])
-        databases = ConfigObj(global_conf['mysql_databases'])
-        projects = ConfigObj(global_conf['projects'])
+        connections = ConfigObj(os.path.abspath(global_conf['mysql_connections']))
+        databases = ConfigObj(os.path.abspath(global_conf['mysql_databases']))
+        projects = ConfigObj(os.path.abspath(global_conf['projects']))
         for id, info in projects.items():
             for project in info['projects']:
                 dbs[project] = {}
@@ -40,8 +41,8 @@ def setup_environ(app, global_conf, app_conf):
                             user=connection['user'],
                             passwd=connection['password'],)
                     dbs[project][db_id] = db
-        parameters = ConfigObj(global_conf['parameters'])
-        project_parameters = ConfigObj(global_conf['project_parameters'])
+        parameters = ConfigObj(os.path.abspath(global_conf['parameters']))
+        project_parameters = ConfigObj(os.path.abspath(global_conf['project_parameters']))
         parameter_labels = {}
         parameter_columns = {}
         parameter_mapping = {}
