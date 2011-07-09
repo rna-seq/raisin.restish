@@ -7,6 +7,7 @@ from restish.app import RestishApp
 from raisin.resource import root
 from raisin.mysqldb import DB
 
+
 def make_app(global_conf, **app_conf):
     """
     PasteDeploy WSGI application factory. Called by PasteDeploy (or a compatable WSGI application
@@ -15,6 +16,7 @@ def make_app(global_conf, **app_conf):
     app = RestishApp(root.Root())
     app = setup_environ(app, global_conf, app_conf)
     return app
+
 
 def setup_environ(app, global_conf, app_conf):
     """
