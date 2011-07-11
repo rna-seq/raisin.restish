@@ -41,11 +41,8 @@ def setup_environ(app, global_conf, app_conf):
                 dbs[project] = {}
                 for db_id, db_name in projects[id]['dbs'].items():
                     connection = connections[databases[db_name]['connection']]
-                    db = DB(database=databases[db_name]['db'],
-                            host=connection['server'],
-                            port=int(connection['port']),
-                            user=connection['user'],
-                            passwd=connection['password'],)
+                    database = databases[db_name]['db']
+                    db = DB(database, connection)
                     dbs[project][db_id] = db
         parameters = ConfigObj(os.path.abspath(global_conf['parameters']))
         project_parameters = ConfigObj(os.path.abspath(global_conf['project_parameters']))
