@@ -2,6 +2,7 @@
 WSGI/PasteDeploy application bootstrap module.
 """
 import os
+import sqlite3
 from configobj import ConfigObj
 from restish.app import RestishApp
 from raisin.resource import root
@@ -22,6 +23,8 @@ def setup_environ(app, global_conf, app_conf):
     """
     WSGI application wrapper factory for extending the WSGI environ with application-specific keys.
     """
+    sqlite3_database = sqlite3.connect(global_conf['sqlite3_database'])
+
     # Create any objects that should exist for the lifetime of the application
     # here. Don't forget to actually include them in the environ below!
     print "Settings:"
@@ -38,12 +41,13 @@ def setup_environ(app, global_conf, app_conf):
         projects = ConfigObj(os.path.abspath(global_conf['projects']))
         for id, info in projects.items():
             for project in info['projects']:
-                dbs[project] = {}
+                dbs[project] = {'RNAseqPipelineWarehouse':sqlite3_database}
                 for db_id, db_name in projects[id]['dbs'].items():
                     connection = connections[databases[db_name]['connection']]
                     database = databases[db_name]['db']
                     db = DB(database, connection)
                     dbs[project][db_id] = db
+                    
         parameters = ConfigObj(os.path.abspath(global_conf['parameters']))
         project_parameters = ConfigObj(os.path.abspath(global_conf['project_parameters']))
         parameter_labels = {}
