@@ -1,7 +1,1 @@
 * text=auto !eol
-/README.txt -text
-raisin/__init__.py -text
-raisin/restish/__init__.py -text
-raisin/restish/wsgiapp.py -text
-/setup.py -text
-/version.txt -text
