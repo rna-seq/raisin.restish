@@ -23,7 +23,8 @@ def setup_environ(app, global_conf, app_conf):
     """
     WSGI application wrapper factory for extending the WSGI environ with application-specific keys.
     """
-    sqlite3_database = sqlite3.connect(global_conf['sqlite3_database'])
+    sqlite3_database = sqlite3.connect(global_conf['sqlite3_database'],
+                                       check_same_thread = False)
 
     # Create any objects that should exist for the lifetime of the application
     # here. Don't forget to actually include them in the environ below!
