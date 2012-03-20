@@ -44,7 +44,13 @@ def setup_environ(app, global_conf, app_conf):
             for project in info['projects']:
                 dbs[project] = {'RNAseqPipelineWarehouse':sqlite3_database}
                 for db_id, db_name in projects[id]['dbs'].items():
-                    connection = connections[databases[db_name]['connection']]
+                    try:
+                        databases_for_dbname = databases[db_name]
+                    except:
+                        ini = os.path.abspath(global_conf['mysql_databases'])
+                        raise KeyError("project %s not found in %s" % (db_name, ini))
+                    database_connection = databases_for_dbname['connection']
+                    connection = connections[database_connection]
                     database = databases[db_name]['db']
                     db = DB(database, connection)
                     dbs[project][db_id] = db
