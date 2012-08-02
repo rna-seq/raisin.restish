@@ -40,9 +40,11 @@ def setup_environ(app, global_conf, app_conf):
         connections = ConfigObj(os.path.abspath(global_conf['mysql_connections']))
         databases = ConfigObj(os.path.abspath(global_conf['mysql_databases']))
         projects = ConfigObj(os.path.abspath(global_conf['projects']))
+        downloads = ConfigObj(os.path.abspath(global_conf['downloads']))
         for id, info in projects.items():
             for project in info['projects']:
-                dbs[project] = {'RNAseqPipelineWarehouse':sqlite3_database}
+                dbs[project] = {'RNAseqPipelineWarehouse': sqlite3_database,
+                                'downloads': downloads[project]['path']}
                 for db_id, db_name in projects[id]['dbs'].items():
                     databases_for_dbname = None
                     try:
