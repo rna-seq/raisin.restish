@@ -43,8 +43,11 @@ def setup_environ(app, global_conf, app_conf):
         downloads = ConfigObj(os.path.abspath(global_conf['downloads']))
         for id, info in projects.items():
             for project in info['projects']:
+                downloads_url = None
+                if project in downloads:
+                    downloads_url = downloads[project]['url']
                 dbs[project] = {'RNAseqPipelineWarehouse': sqlite3_database,
-                                'downloads': downloads[project]['path']}
+                                'downloads': downloads_url}
                 for db_id, db_name in projects[id]['dbs'].items():
                     databases_for_dbname = None
                     try:
