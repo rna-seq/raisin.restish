@@ -32,9 +32,6 @@ def setup_environ(app, global_conf, app_conf):
     for key, value in global_conf.items():
         print " " * 4, key, value
 
-    pickles_cache_path = None
-    if global_conf['use_pickles_cache'] == 'True':
-        pickles_cache_path = os.path.abspath(global_conf['pickles_cache_path'])
     dbs = {}
     if global_conf['use_sql_database']:
         connections = ConfigObj(os.path.abspath(global_conf['mysql_connections']))
@@ -77,7 +74,6 @@ def setup_environ(app, global_conf, app_conf):
         # Making the following additional keys available to the environ.
         # They become available to the request like this:
         # request.environ['myvar']
-        environ['pickles_cache_path'] = pickles_cache_path
         environ['dbs'] = dbs
         environ['parameter_columns'] = parameter_columns
         environ['parameter_labels'] = parameter_labels
