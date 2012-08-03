@@ -58,7 +58,7 @@ def setup_environ(app, global_conf, app_conf):
                         database = databases[db_name]['db']
                         db = DB(database, connection)
                         dbs[project][db_id] = db
-                    
+
         parameters = ConfigObj(os.path.abspath(global_conf['parameters']))
         project_parameters = ConfigObj(os.path.abspath(global_conf['project_parameters']))
         parameter_labels = {}
